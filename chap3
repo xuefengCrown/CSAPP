@@ -1,0 +1,22 @@
+内存中，按字节编址！
+sizeof(int)
+
+# 汇编看指针
+
+long exchange(long *xp, long y)
+{
+	long x = *xp;
+	*xp = y;
+	return x;
+}
+
+long exchange(long *xp, long y)
+xp in %rdi, y in %rsi
+exchange:
+  movq	(%rdi), %rax    get x at xp. set as return value
+  movq  %rsi, (%rdi)    store y at xp
+  ret                   return
+
+参数通过寄存器传递给函数。
+C语言的“指针”就是地址。间接引用指针就是将该指针放在一个寄存器中，
+然后在内存引用中使用这个寄存器。
