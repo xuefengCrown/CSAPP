@@ -1,5 +1,5 @@
 
-
+https://wdxtub.com/2016/04/16/thick-csapp-lab-2/
 Diffusing your bomb
 objdump -t bomb: examines the symbol table
 objdump -d bomb: disassembles all bomb code
