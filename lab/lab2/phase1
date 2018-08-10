@@ -7,3 +7,6 @@
   400ef2:       e8 43 05 00 00          callq  40143a <explode_bomb>
   400ef7:       48 83 c4 08             add    $0x8,%rsp
   400efb:       c3                      retq
+
+x/s $esi
+Border relations with Canada have never been better.
