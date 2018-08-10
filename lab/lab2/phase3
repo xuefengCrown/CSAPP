@@ -1,5 +1,5 @@
 https://www.cnblogs.com/remlostime/archive/2011/05/21/2052708.html
-
+1 311 (there're other answers!)
 Dump of assembler code for function phase_3:
 => 0x0000000000400f43 <+0>:	sub    $0x18,%rsp
    0x0000000000400f47 <+4>:	lea    0xc(%rsp),%rcx
