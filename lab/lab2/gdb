@@ -1,5 +1,7 @@
 
+http://blog.jobbole.com/107759/gdb 调试入门,大牛写的高质量指南 - 文章 - 伯乐在线
 https://wdxtub.com/2016/04/16/thick-csapp-lab-2/
+
 Diffusing your bomb
 objdump -t bomb: examines the symbol table
 objdump -d bomb: disassembles all bomb code
@@ -12,12 +14,12 @@ gdb bomb will open GNU Debugger
 		instruction stream
 
 help
-break explode_bomb
+break explode_bomb (b)
 break phrase_1
 run
 到达断点处
 	disas
-(gdb) info registers
+(gdb) info registers (i r)
 (gdb) print $rsp
 (gdb) stepi
 (gdb) nexti
@@ -47,3 +49,13 @@ x/4wd $rsp
 
 用 ctl+c 可以退出，每次进入都要设置断点（保险起见），炸弹会用 sscanf 来读取字符串，
 了解清楚（感谢网友十六夜砕月指正）到底需要输入什么。
+
+9. 单步调试
+我跳到下一条指令（si，stepi的简写），然后检查寄存器：
+(gdb) p/a 0x7ffff3e8f948
+$1 = 0x7ffff3e8f948 <cur_term>
+（p/a 是 print/a 的简写，这里 “/a” 指以地址的形式）。
+
+10. 回退
+gdb 有一个超棒的功能叫回退，Greg Law 在他的演讲中提到过。这里有一个例子。
+(gdb) reverse-stepi
