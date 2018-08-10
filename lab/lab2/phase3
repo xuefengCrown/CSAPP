@@ -55,3 +55,4 @@ int sscanf( const char * src, const char * format, ...);
 int scanf( const char * format, ...);
 这两个函数很相似，只是第一个函数以src作为输入，而第二个函数以标准输入STDIN读取输入；
 
+这关基本上就是对switch语句的反汇编，最重要的是理解了switch的跳转表的结构就能重新刻画出switch的结构了，问题就迎刃而解了。
