@@ -1,3 +1,40 @@
 https://www.viseator.com/2017/07/18/CS_APP_AttackLab/
 https://wdxtub.com/2016/04/16/thick-csapp-lab-3/
 
+%rbp
+首先rbp入栈， BP寄存器是基址指针寄存器，是专门用来处理函数调用的。那么push %rbp就是将rbp寄存器的内容先保存入栈，
+然后mov %rsp, %rbp，将现在的%rbp的值赋值为和%rsp相等。
+
+x86-64 的函数调用过程，需要做的设置有：
+    调用者：
+        为要保存的寄存器值及可选参数分配足够大空间的栈帧
+        把所有调用者需要保存的寄存器存储在帧中
+        把所有需要保存的可选参数按照逆序存入帧中
+        call foo: 会先把 %rip 保存到栈中，然后跳转到 label foo
+    被调用者
+        把任何被调用者需要保存的寄存器值压栈减少 %rsp 的值以便为新的帧腾出空间
+
+x86-64 的函数返回过程：
+    被调用者
+        增加 %rsp 的计数，逆序弹出所有的被调用者保存的寄存器，执行 ret: pop %rip
+
+
+这之后，我们需要把需要注入的代码转换位字节码，这样机器才能执行，这里可以使用 gcc 和 objdump 来完成这个工作
+# 假设 foo.s 是我们想要注入的代码
+vim foo.s
+# 利用 gcc 生成对应的字节码 foo.o
+gcc -c foo.s
+# 通过 objdump 来查看其内容，可以看到对应的字节码
+objdump -d foo.o | less
+# 然后需要把十六进制代码转换成字符串这样我们可以写在程序里
+./hex2raw -i inputfile -o outputfile
+
+
+
+
+
+
+
+
+
+
